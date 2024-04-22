@@ -5,14 +5,15 @@ import UpdateCoffee from "../components/UpdateCoffee";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout/>,
-    },
-    {
-        path: '/addCoffee',
-        element: <AddCoffee/>
-    },
-    {
-        path: '/updateCoffee',
-        element: <UpdateCoffee/>
-    }
+    element: <MainLayout />,
+    loader: () => fetch("http://localhost:3000/coffee"),
+  },
+  {
+    path: "/addCoffee",
+    element: <AddCoffee />,
+  },
+  {
+    path: "/updateCoffee",
+    element: <UpdateCoffee />,
+  },
 ]);

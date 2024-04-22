@@ -1,4 +1,13 @@
+import { Link, useLoaderData } from "react-router-dom";
+import Card from "../components/Card";
+import img1 from "../assets/icons/1.png";
+import img2 from "../assets/icons/2.png";
+import img3 from "../assets/icons/3.png";
+import img4 from "../assets/icons/4.png";
+
 function MainLayout() {
+  const coffee = useLoaderData();
+  console.log(coffee);
   return (
     <div>
       <div className=" text-center flex items-center justify-center gap-2 py-2 bg-[#331A15]">
@@ -35,31 +44,51 @@ function MainLayout() {
       <div className="bg-[#ECEAE3]">
         <div className="flex max-w-7xl mx-auto gap-4 py-12">
           <div className="space-y-2">
-            <img src="/icons/1.png" alt="" />
+            <img src={img1} alt="" />
             <h2 className="font-rancho text-xl font-semibold">Awesome Aroma</h2>
             <p>
               You will definitely be a fan of the design & aroma of your coffee
             </p>
           </div>
           <div className="space-y-2">
-            <img src="/icons/2.png" alt="" />
+            <img src={img2} alt="" />
             <h2 className="font-rancho text-xl font-semibold">High Quality</h2>
             <p>We served the coffee to you maintaining the best quality</p>
           </div>
           <div className="space-y-2">
-            <img src="/icons/3.png" alt="" />
+            <img src={img3} alt="" />
             <h2 className="font-rancho text-xl font-semibold">Pure Grades</h2>
             <p>
               The coffee is made of the green coffee beans which you will love
             </p>
           </div>
           <div className="space-y-2">
-            <img src="/icons/4.png" alt="" />
-            <h2 className="font-rancho text-xl font-semibold">Proper Roasting</h2>
+            <img src={img4} alt="" />
+            <h2 className="font-rancho text-xl font-semibold">
+              Proper Roasting
+            </h2>
             <p>
               Your coffee is brewed by first roasting the green coffee beans
             </p>
           </div>
+        </div>
+      </div>
+
+      <div className="py-16">
+        <div className="space-y-4 py-8">
+          <h2 className="font-rancho text-4xl text-[#331A15] font-bold text-center">
+            Our Popular Products
+          </h2>
+          <div className="flex justify-center">
+            <Link to="/addCoffee" className="btn bg-[#E3B577] ">
+              Add Coffee
+            </Link>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-8 max-w-7xl mx-auto">
+          {coffee.map((item, index) => (
+            <Card key={index} coffeeDetails={item} />
+          ))}
         </div>
       </div>
     </div>
