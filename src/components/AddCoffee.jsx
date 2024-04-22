@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 function AddCoffee() {
   const handleAddedCoffee = (e) => {
@@ -53,6 +54,9 @@ function AddCoffee() {
             distribution of letters, as opposed to using Content here.
           </p>
         </div>
+        <Link className="btn mb-6 bg-[#D2B48C]" to="/">
+          Back to home
+        </Link>
         <form
           onSubmit={handleAddedCoffee}
           noValidate=""

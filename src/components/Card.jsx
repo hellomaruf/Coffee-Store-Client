@@ -1,5 +1,37 @@
+import Swal from "sweetalert2";
+
 function Card({ coffeeDetails }) {
-  const { coffeeName, chef, category, photo } = coffeeDetails;
+  const { _id, coffeeName, chef, category, photo } = coffeeDetails;
+  const handleDelete = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(_id);
+
+        fetch(`http://localhost:3000/coffee/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
   return (
     <div>
       <div className="card card-side h-full flex items-center bg-[#F5F4F1] bg-opacity-70 shadow-md">
@@ -17,10 +49,16 @@ function Card({ coffeeDetails }) {
             <span className="font-semibold">Category</span> : {category}
           </h2>
         </div>
-        <div className="flex flex-col space-y-3">
-          <i className="ri-eye-line bg-[#D2B48C] text-white p-2 rounded-md text-xl mx-4"></i>
-          <i className="ri-pencil-line bg-[#3C393B] text-white p-2 rounded-md text-xl mx-4"></i>
-          <i className="ri-delete-bin-5-line bg-[#EA4744] text-white p-2 rounded-md text-xl mx-4"></i>
+        <div className="flex flex-col space-y-6">
+          <button>
+            <i className="ri-eye-line bg-[#D2B48C] text-white p-2 rounded-md text-xl mx-4"></i>
+          </button>
+          <button>
+            <i className="ri-pencil-line bg-[#3C393B] text-white p-2 rounded-md text-xl mx-4"></i>
+          </button>
+          <button onClick={() => handleDelete(_id)}>
+            <i className="ri-delete-bin-5-line bg-[#EA4744] text-white p-2 rounded-md text-xl mx-4"></i>
+          </button>
         </div>
       </div>
     </div>
