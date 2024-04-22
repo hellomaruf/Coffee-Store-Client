@@ -1,4 +1,46 @@
+import Swal from "sweetalert2";
 function AddCoffee() {
+  const handleAddedCoffee = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const coffeeName = form.name.value;
+    const chef = form.chef.value;
+    const supplier = form.supplier.value;
+    const teste = form.teste.value;
+    const category = form.category.value;
+    const details = form.details.value;
+    const photo = form.photo.value;
+    const newCoffee = {
+      coffeeName,
+      chef,
+      supplier,
+      teste,
+      category,
+      details,
+      photo,
+    };
+    console.log(newCoffee);
+    // send data to the server
+    fetch("http://localhost:3000/coffee", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newCoffee),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Added Coffee Successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
+  };
   return (
     <div>
       <section className="p-6 max-w-7xl mx-auto dark:text-gray-900">
@@ -12,6 +54,7 @@ function AddCoffee() {
           </p>
         </div>
         <form
+          onSubmit={handleAddedCoffee}
           noValidate=""
           action=""
           className="container flex flex-col mx-auto space-y-12"
@@ -23,7 +66,8 @@ function AddCoffee() {
                   Name
                 </label>
                 <input
-                  id="firstname"
+                  required
+                  name="name"
                   type="text"
                   placeholder="Enter Coffee name"
                   className="w-full rounded-md  p-2 outline-none border"
@@ -34,7 +78,8 @@ function AddCoffee() {
                   Chef
                 </label>
                 <input
-                  id="lastname"
+                  required
+                  name="chef"
                   type="text"
                   placeholder="Enter Chef name"
                   className="w-full rounded-md p-2 outline-none border "
@@ -47,7 +92,8 @@ function AddCoffee() {
                   Supplier
                 </label>
                 <input
-                  id="firstname"
+                  required
+                  name="supplier"
                   type="text"
                   placeholder="Enter Coffee Supplier"
                   className="w-full rounded-md  p-2 outline-none border"
@@ -58,7 +104,8 @@ function AddCoffee() {
                   Teste
                 </label>
                 <input
-                  id="lastname"
+                  required
+                  name="teste"
                   type="text"
                   placeholder="Enter Coffee Teste"
                   className="w-full rounded-md p-2 outline-none border "
@@ -71,7 +118,8 @@ function AddCoffee() {
                   Category
                 </label>
                 <input
-                  id="firstname"
+                  required
+                  name="category"
                   type="text"
                   placeholder="Enter Coffee Category"
                   className="w-full rounded-md  p-2 outline-none border"
@@ -82,7 +130,8 @@ function AddCoffee() {
                   Details
                 </label>
                 <input
-                  id="lastname"
+                  required
+                  name="details"
                   type="text"
                   placeholder="Enter Coffee Details"
                   className="w-full rounded-md p-2 outline-none border "
@@ -95,15 +144,18 @@ function AddCoffee() {
                   Photo
                 </label>
                 <input
-                  id="firstname"
+                  required
+                  name="photo"
                   type="text"
                   placeholder="Enter Photo URL"
                   className="w-full rounded-md  p-2 outline-none border"
                 />
                 <div className=" w-full">
-                  <button className="bg-[#D2B48C] w-full mt-8 py-2 font-bold text-gray-700 rounded-lg">
-                    Add Coffee
-                  </button>
+                  <input
+                    className="bg-[#D2B48C] w-full mt-8 py-2 font-bold text-gray-700 rounded-lg"
+                    type="submit"
+                    value="Add a Coffee"
+                  />
                 </div>
               </div>
             </div>
