@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function Card({ coffeeDetails }) {
@@ -53,9 +54,9 @@ function Card({ coffeeDetails }) {
           <button>
             <i className="ri-eye-line bg-[#D2B48C] text-white p-2 rounded-md text-xl mx-4"></i>
           </button>
-          <button>
+          <Link to={`/updateCoffee/${_id}`}>
             <i className="ri-pencil-line bg-[#3C393B] text-white p-2 rounded-md text-xl mx-4"></i>
-          </button>
+          </Link>
           <button onClick={() => handleDelete(_id)}>
             <i className="ri-delete-bin-5-line bg-[#EA4744] text-white p-2 rounded-md text-xl mx-4"></i>
           </button>
