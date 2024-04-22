@@ -4,10 +4,13 @@ import img1 from "../assets/icons/1.png";
 import img2 from "../assets/icons/2.png";
 import img3 from "../assets/icons/3.png";
 import img4 from "../assets/icons/4.png";
+import { useState } from "react";
 
 function MainLayout() {
-  const coffee = useLoaderData();
-  console.log(coffee);
+  const loadedCoffee = useLoaderData();
+  const [coffee, setCoffee] = useState(loadedCoffee)
+
+  console.log(loadedCoffee);
   return (
     <div>
       <div className=" text-center flex items-center justify-center gap-2 py-2 bg-[#331A15]">
@@ -96,8 +99,8 @@ function MainLayout() {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {coffee.map((item, index) => (
-            <Card key={index} coffeeDetails={item} />
+          {coffee?.map((item, index) => (
+            <Card key={index} coffee={coffee} setCoffee={setCoffee} coffeeDetails={item} />
           ))}
         </div>
       </div>
