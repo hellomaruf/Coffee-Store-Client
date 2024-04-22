@@ -41,6 +41,7 @@ function MainLayout() {
         </div>
       </div>
       {/* hero section end */}
+
       <div className="bg-[#ECEAE3]">
         <div className="flex max-w-7xl mx-auto gap-4 py-12">
           <div className="space-y-2">
@@ -74,7 +75,16 @@ function MainLayout() {
         </div>
       </div>
 
-      <div className="py-16">
+      {/* coffee card section start */}
+      <div className="py-16 relative">
+        <img className="absolute" src="/images/4.png" alt="" />
+        <div className="max-w-xl">
+          <img
+            className="absolute right-0 top-0"
+            src="/images/bg-home.png"
+            alt=""
+          />
+        </div>
         <div className="space-y-4 py-8">
           <h2 className="font-rancho text-4xl text-[#331A15] font-bold text-center">
             Our Popular Products
@@ -91,6 +101,7 @@ function MainLayout() {
           ))}
         </div>
       </div>
+      {/* coffee card section end */}
     </div>
   );
 }

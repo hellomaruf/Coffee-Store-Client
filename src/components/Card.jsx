@@ -2,7 +2,7 @@ function Card({ coffeeDetails }) {
   const { coffeeName, chef, category, photo } = coffeeDetails;
   return (
     <div>
-      <div className="card card-side h-full flex items-center bg-[#F5F4F1] shadow-md">
+      <div className="card card-side h-full flex items-center bg-[#F5F4F1] bg-opacity-70 shadow-md">
         <figure className=" w-52  p-6">
           <img src={photo} className=" w-full" alt="Movie" />
         </figure>
