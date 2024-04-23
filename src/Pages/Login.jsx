@@ -14,6 +14,21 @@ function Login() {
     loginUser(email, password)
       .then((res) => {
         console.log(res.user);
+        const user = {
+          email,
+          lastSignInTime: res.user.metadata.lastSignInTime,
+        };
+        fetch("http://localhost:3000/user", {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
       })
       .catch((error) => {
         console.log(error);
