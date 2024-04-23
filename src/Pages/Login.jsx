@@ -1,12 +1,23 @@
+import { useContext } from "react";
+import { AuthContext } from "../Services/AuthProvider";
+
 function Login() {
+  const { loginUser } = useContext(AuthContext);
+  console.log(loginUser);
   const handleLogin = (event) => {
     console.log("login");
     event.preventDefault();
     const form = event.target;
-    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password);
+    console.log(email, password);
+    loginUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div>
@@ -22,18 +33,6 @@ function Login() {
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleLogin} className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  name="name"
-                  type="text"
-                  placeholder="Name"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
