@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Services/AuthProvider";
 function AddCoffee() {
+  const {name} = useContext(AuthContext)
+  console.log(name);
   const handleAddedCoffee = (e) => {
     e.preventDefault();
     const form = e.target;
