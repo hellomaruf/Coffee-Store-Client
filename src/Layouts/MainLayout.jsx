@@ -8,16 +8,21 @@ import { useState } from "react";
 
 function MainLayout() {
   const loadedCoffee = useLoaderData();
-  const [coffee, setCoffee] = useState(loadedCoffee)
+  const [coffee, setCoffee] = useState(loadedCoffee);
 
   console.log(loadedCoffee);
   return (
     <div>
-      <div className=" text-center flex items-center justify-center gap-2 py-2 bg-[#331A15]">
-        <img className="w-14" src="images/logo1.png" alt="" />
-        <h1 className="font-rancho font-bold text-2xl text-white">
-          Espresso Emporium
-        </h1>
+      <div className=" text-center flex items-center justify-between gap-2 py-2 px-16 bg-[#331A15]">
+        <div className="flex items-center">
+          <img className="w-14" src="images/logo1.png" alt="" />
+          <h1 className="font-rancho font-bold text-2xl text-white">
+            Espresso Emporium
+          </h1>
+        </div>
+        <Link className="text-black border-none btn bg-[#E3B577]" to="/user">
+          Users
+        </Link>
       </div>
       {/* hero section start*/}
       <div
@@ -100,7 +105,12 @@ function MainLayout() {
         </div>
         <div className="grid grid-cols-2 gap-8 max-w-7xl mx-auto">
           {coffee?.map((item, index) => (
-            <Card key={index} coffee={coffee} setCoffee={setCoffee} coffeeDetails={item} />
+            <Card
+              key={index}
+              coffee={coffee}
+              setCoffee={setCoffee}
+              coffeeDetails={item}
+            />
           ))}
         </div>
       </div>
